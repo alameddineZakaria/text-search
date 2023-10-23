@@ -313,15 +313,20 @@
 
 <div class="content" role="main">
 
-  
 
-  <div class="card-container">
 
-    <input type="text" (keypress)="searchHighlighter($event, text)" (keyup)="searchHighlighter($event, text)">
+  <div   fxLayout="column">
 
-    <code #text>
-     {{txt}}
-    </code>
+    <div class="search-box">
+      <input [(ngModel)]="searchQuery" (ngModelChange)="highlightText(txt)" placeholder="Search..."  class="search-box"/>
+      <button *ngIf="searchQuery" (click)="clearSearch(txt)" class="clear">Clear</button>
+     
+      <p class="count">Total Results: {{ highlightedResults.length }}</p>
+    </div>
+    
+    <div #txt>
+      {{sampleText}}
+    </div>
 
   </div>
 
